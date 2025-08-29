@@ -1,10 +1,9 @@
 const { useState, useEffect } = React
 
-export function HomePage() {
+export function BookDetails() {
     return (
         <section className="home">
-            <h2>Miss Books</h2>
+            <h2>BookDetails</h2>
        </section>
     )
 }
-
