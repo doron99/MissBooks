@@ -1,0 +1,30 @@
+/* Vars */
+:root {
+	/* Primary (Blue) */
+	--clr1: rgb(0, 123, 255);         /* Primary Blue */
+	/* Secondary (Orange) */
+	--clr2: rgb(255, 122, 0);         /* Secondary Orange */
+
+	--clr1bg: rgb(204, 229, 255);     /* Light Blue Background */
+	--clr1bg-light: rgb(232, 243, 255); /* Extra Light Blue */
+	--clr2bg: rgb(255, 209, 153);     /* Light Orange Background */
+	--clr2bg-light: rgb(255, 235, 204); /* Extra Light Orange */
+
+	/* Neutral / Tertiary (Light Gray) */
+	--gray1: rgb(245, 245, 245);      /* Background Gray */
+	--gray2: rgb(155, 155, 155);      /* Medium Gray for borders/text */
+	--gray3: rgb(44, 44, 44);         /* Dark Gray for primary text */
+}
+/* :root {
+	--clr1: rgb(96, 107, 91);
+	--clr2: rgb(120, 99, 110);
+
+	--clr1bg: rgb(153, 166, 149);
+	--clr1bg-light: rgb(205, 221, 200);
+	--clr2bg: rgb(233, 206, 221);
+	--clr2bg-light: rgb(253, 236, 246);
+
+	--gray1: rgb(240, 240, 240);
+	--gray2: rgb(155, 155, 155);
+	--gray3: rgb(44, 44, 44);
+} */

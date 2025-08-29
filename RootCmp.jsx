@@ -1,7 +1,7 @@
 
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { HomePage } from "./pages/HomePage.jsx"
-// import { BookIndex } from "./pages/BookIndex.jsx"
+import { BookIndex } from "./pages/BookIndex.jsx"
 
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route, Navigate } = ReactRouterDOM
@@ -21,7 +21,7 @@ export function App() {
                             <Route path="/about/team" element={<Team />} />
                             <Route path="/about/vision" element={<Vision />} />
                         </Route> */}
-                        {/* <Route path="/book" element={<BookIndex />} /> */}
+                        <Route path="/book" element={<BookIndex />} />
                         {/* <Route path="/book/:bookId" element={<BookDetails />} />
                         <Route path="*" element={<NotFound />} /> */}
                     </Routes>
