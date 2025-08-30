@@ -4,7 +4,8 @@ export function BookPreview({ book }) {
     const bookAgeCategory = calcBookAgeCategory(book.publishedDate);
     const spanBookAgeBadge = bookAgeCategory != '' ? <span className="badge bookAgeCategory">{bookAgeCategory}</span> : '';
     const spanReaderLevel = <span className="badge readerLevel">{readerLevel}</span>
-    const priceClass = calcPriceClass(book.listPrice.amount)
+    const priceClass = calcPriceClass(book.listPrice.amount);
+    const spanPrice = <span className={priceClass}>{book.listPrice.amount}{getCurrency(book.listPrice.currencyCode)}</span>
     return (
         <article className="book-preview-container">
             {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
@@ -24,9 +25,14 @@ export function BookPreview({ book }) {
                 </div>
 
             </div>
-            <h4>Price: <span className={priceClass}>{book.listPrice.amount}</span></h4>
+            <h4>Price: {spanPrice}</h4>
         </article>
     )
+}
+function getCurrency(currencyCode) {
+    if (currencyCode == 'EUR')
+        return '€';
+    return '₪';
 }
 function calcBookAgeCategory(year) {
     const yearsDifference = new Date().getFullYear()-year;
