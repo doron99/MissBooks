@@ -25,6 +25,7 @@
 }
 .img-container {
     overflow: hidden;
+    position: relative;
 }
 .book-preview-container img.book-cover:hover  {
     transform: scale(1.1);
@@ -60,4 +61,13 @@
     width:100%;
     top: 10px;
     z-index:1002;
+}
+.book-title {
+    position: absolute;
+    z-index: 1003;
+    background: rgba(255, 255, 255, 0.8);
+    bottom: 10px;
+    text-align: center;
+    display: inline-block;
+    width:100%;
 }

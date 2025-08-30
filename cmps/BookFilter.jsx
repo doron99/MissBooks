@@ -47,7 +47,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
     // }
 
 
-    const { txt, pageCount } = filterByToEdit
+    const { txt, price } = filterByToEdit
     return (
         <section className="car-filter">
             <h2>Filter Books</h2>
@@ -58,9 +58,9 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                 />
                 <br/>
                 <br/>
-                <label htmlFor="pageCount">Page Count: &nbsp;</label>
-                <input value={pageCount} onChange={handleChange}
-                    type="number" placeholder="By Page Count" id="pageCount" name="pageCount"
+                <label htmlFor="price">Price: &nbsp;</label>
+                <input value={price} onChange={handleChange}
+                    type="number" placeholder="By Price" id="price" name="price"
                 />
 
                 <button hidden>Set Filter</button>

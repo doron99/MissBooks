@@ -1,4 +1,3 @@
-
 export function BookPreview({ book }) {
     const readerLevel = book.pageCount > 500 
         ? 'Serious Reading' : (book.pageCount > 200 
@@ -16,8 +15,10 @@ export function BookPreview({ book }) {
                     {spanReaderLevel}
                     {spanBookAgeBadge}
                 </div>
-                <img className="sale-icon" src="../assets/img/sale.png" alt="" />
+                <img className="sale-icon" src="assets/img/sale.png" alt="" />
                 <div className="img-container">
+                    <span className="book-title">{book.title}</span>
+
                     <img 
                         className="book-cover" 
                         src={book.thumbnail.replace('http://','https://www.')} 

@@ -7,75 +7,75 @@ export const bookService = {
     get,
     remove,
     save,
-    getEmptyCar,
+    //getEmptyBook,
     getDefaultFilter
 }
 
 function query(filterBy = {}) {
     return storageService.query(BOOK_KEY)
-        .then(cars => {
+        .then(books => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                cars = cars.filter(car => regExp.test(car.vendor))
+                books = books.filter(book => regExp.test(book.title))
             }
-            if (filterBy.pageCount) {
-                cars = cars.filter(car => car.speed >= filterBy.pageCount)
+            if (filterBy.price) {
+                books = books.filter(book => book.listPrice.amount >= filterBy.price)
             }
-            return cars
+            return books
         })
 }
 
-function get(carId) {
-    return storageService.get(BOOK_KEY, carId)
-        .then(car => _setNextPrevCarId(car))
+function get(bookId) {
+    return storageService.get(BOOK_KEY, bookId)
+        .then(book => _setNextPrevBookId(book))
 }
 
-function remove(carId) {
+function remove(bookId) {
     // return Promise.reject('Oh No!')
-    return storageService.remove(BOOK_KEY, carId)
+    return storageService.remove(BOOK_KEY, bookId)
 }
 
-function save(car) {
-    if (car.id) {
-        return storageService.put(BOOK_KEY, car)
+function save(book) {
+    if (book.id) {
+        return storageService.put(BOOK_KEY, book)
     } else {
-        return storageService.post(BOOK_KEY, car)
+        return storageService.post(BOOK_KEY, book)
     }
 }
 
-function getEmptyCar(vendor = '', speed = '') {
-    return { vendor, speed }
-}
+// function getEmptyCar(vendor = '', speed = '') {
+//     return { vendor, speed }
+// }
 
 function getDefaultFilter() {
-    return { txt: '', pageCount: '' }
+    return { txt: '', price: '' }
 }
 
 
 
-function _setNextPrevCarId(car) {
-    return query().then((cars) => {
-        const carIdx = cars.findIndex((currCar) => currCar.id === car.id)
-        const nextCar = cars[carIdx + 1] ? cars[carIdx + 1] : cars[0]
-        const prevCar = cars[carIdx - 1] ? cars[carIdx - 1] : cars[cars.length - 1]
-        car.nextCarId = nextCar.id
-        car.prevCarId = prevCar.id
-        return car
+function _setNextPrevBookId(book) {
+    return query().then((books) => {
+        const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+        const nextCar = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+        const prevCar = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
+        book.nextBookId = nextCar.id
+        book.prevBookId = prevCar.id
+        return book
     })
 }
 
-function _createCars() {
-    let cars = loadFromStorage(BOOK_KEY)
-    if (!cars || !cars.length) {
-        cars = [
-            _createCar('audu', 300),
-            _createCar('fiak', 120),
-            _createCar('subali', 50),
-            _createCar('mitsu', 150)
-        ]
-        saveToStorage(BOOK_KEY, cars)
-    }
-}
+// function _createCars() {
+//     let cars = loadFromStorage(BOOK_KEY)
+//     if (!cars || !cars.length) {
+//         cars = [
+//             _createCar('audu', 300),
+//             _createCar('fiak', 120),
+//             _createCar('subali', 50),
+//             _createCar('mitsu', 150)
+//         ]
+//         saveToStorage(BOOK_KEY, cars)
+//     }
+// }
 //it creates 20 books and save to db
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
