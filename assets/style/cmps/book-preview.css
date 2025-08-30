@@ -1,0 +1,63 @@
+.book-preview {
+    /* background: var(--clr1bg); */
+    /* max-height:200px; */
+
+}
+.book-preview-container .red {
+    color:red;
+}
+.book-preview-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 5px;
+    max-width: max-content;
+    margin:10px auto 5px auto;
+}
+.book-preview-container img {
+    max-width:max-content;
+    max-height:max-content;
+    /* padding:10px; */
+    transition: transform 0.5s ease;
+    
+}
+.img-container {
+    overflow: hidden;
+}
+.book-preview-container img.book-cover:hover  {
+    transform: scale(1.1);
+}
+.book-preview-container img.sale-icon {
+    position: absolute;
+    top: -35px;
+    left: -35px;
+    width: 80px;
+    height: 80px;
+    z-index:1001;
+}
+
+.badge {
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    /* background-color: aliceblue; */
+    background-color: var(--clr2);
+
+    padding: 5px;
+    margin:3px;
+}
+.badges-list {
+    position: absolute;
+    width:100%;
+    top: 10px;
+    z-index:1002;
+}

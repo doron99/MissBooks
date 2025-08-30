@@ -12,34 +12,34 @@ export const bookService = {
 }
 
 function query(filterBy = {}) {
-    return storageService.query(CAR_KEY)
+    return storageService.query(BOOK_KEY)
         .then(cars => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 cars = cars.filter(car => regExp.test(car.vendor))
             }
-            if (filterBy.minSpeed) {
-                cars = cars.filter(car => car.speed >= filterBy.minSpeed)
+            if (filterBy.pageCount) {
+                cars = cars.filter(car => car.speed >= filterBy.pageCount)
             }
             return cars
         })
 }
 
 function get(carId) {
-    return storageService.get(CAR_KEY, carId)
+    return storageService.get(BOOK_KEY, carId)
         .then(car => _setNextPrevCarId(car))
 }
 
 function remove(carId) {
     // return Promise.reject('Oh No!')
-    return storageService.remove(CAR_KEY, carId)
+    return storageService.remove(BOOK_KEY, carId)
 }
 
 function save(car) {
     if (car.id) {
-        return storageService.put(CAR_KEY, car)
+        return storageService.put(BOOK_KEY, car)
     } else {
-        return storageService.post(CAR_KEY, car)
+        return storageService.post(BOOK_KEY, car)
     }
 }
 
@@ -48,7 +48,7 @@ function getEmptyCar(vendor = '', speed = '') {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSpeed: '' }
+    return { txt: '', pageCount: '' }
 }
 
 
@@ -65,7 +65,7 @@ function _setNextPrevCarId(car) {
 }
 
 function _createCars() {
-    let cars = loadFromStorage(CAR_KEY)
+    let cars = loadFromStorage(BOOK_KEY)
     if (!cars || !cars.length) {
         cars = [
             _createCar('audu', 300),
@@ -73,7 +73,7 @@ function _createCars() {
             _createCar('subali', 50),
             _createCar('mitsu', 150)
         ]
-        saveToStorage(CAR_KEY, cars)
+        saveToStorage(BOOK_KEY, cars)
     }
 }
 //it creates 20 books and save to db
