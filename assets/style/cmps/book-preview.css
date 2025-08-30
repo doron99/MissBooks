@@ -61,6 +61,7 @@
     width:100%;
     top: 10px;
     z-index:1002;
+    text-align: center;
 }
 .book-title {
     position: absolute;

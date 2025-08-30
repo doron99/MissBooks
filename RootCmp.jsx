@@ -3,6 +3,7 @@ import { AppHeader } from "./cmps/AppHeader.jsx"
 import { HomePage } from "./pages/HomePage.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 import { AboutUs } from "./pages/AboutUs.jsx"
+import { BookDetails } from "./pages/BookDetails.jsx"
 
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route, Navigate } = ReactRouterDOM
@@ -23,8 +24,8 @@ export function App() {
                             <Route path="/about/vision" element={<Vision />} /> */}
                         </Route> 
                         <Route path="/book" element={<BookIndex />} />
-                        {/* <Route path="/book/:bookId" element={<BookDetails />} />
-                        <Route path="*" element={<NotFound />} /> */}
+                        <Route path="/book/:bookId" element={<BookDetails />} />
+                        {/*<Route path="*" element={<NotFound />} /> */}
                     </Routes>
                 </main>
             </section>

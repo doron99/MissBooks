@@ -77,20 +77,32 @@
     padding: 20px; /* Optional: padding for content */
     text-align: center; /* Center text */
 }
+.flex-item-2 {
+    flex: 1 0 calc(50% - 20px); /* Adjust the percentage for the number of columns */
+    margin: 10px; /* Space between items */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    /*background-color: #f0f0f0;  Optional: background color for visibility */
+    padding: 20px; /* Optional: padding for content */
+    text-align: center; /* Center text */
+}
 @media (max-width: 1200px) {
     .flex-item {
-        flex: 1 0 calc(33.33% - 20px); /* 3 columns */
+        flex: 1 0 calc(33.33% - 20px); 
+        /* 3 columns */
     }
 }
 
 @media (max-width: 800px) {
     .flex-item {
-        flex: 1 0 calc(50% - 20px); /* 2 columns */
+        flex: 1 0 calc(50% - 20px); 
+        /* 2 columns */
     }
 }
 
 @media (max-width: 530px) {
-    .flex-item {
-        flex: 1 0 calc(100% - 20px); /* 1 column */
+    .flex-item .flex-item-2 {
+        flex: 1 0 calc(100% - 20px); 
+        /* 1 column */
     }
+    
 }

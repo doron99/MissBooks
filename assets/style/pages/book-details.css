@@ -1,0 +1,14 @@
+.book-details-content {
+    text-align: start;
+    background: var(--clr1bg);
+    border-radius: 7px;
+}
+.book-details-content h1 {
+    font-size: 2rem;
+}
+.book-details-preview {
+        border: 1px solid rgb(202, 202, 202);
+            border-radius: 7px;
+            padding:30px;
+
+}

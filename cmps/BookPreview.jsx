@@ -1,8 +1,6 @@
 export function BookPreview({ book }) {
-    const readerLevel = book.pageCount > 500 
-        ? 'Serious Reading' : (book.pageCount > 200 
-            ? 'Descent Reading' 
-            : 'Light Reading')
+    const readerLevel = getRenderLevel(book.pageCount);
+     
     const bookAgeCategory = calcBookAgeCategory(book.publishedDate);
     const spanBookAgeBadge = bookAgeCategory != '' ? <span className="badge bookAgeCategory">{bookAgeCategory}</span> : '';
     const spanReaderLevel = <span className="badge readerLevel">{readerLevel}</span>
@@ -41,4 +39,10 @@ function calcPriceClass(amount) {
         return 'green'
     }
     return '';
+}
+function getRenderLevel(pageCount){
+    return pageCount > 500 
+        ? 'Serious Reading' : (pageCount > 200 
+            ? 'Descent Reading' 
+            : 'Light Reading')
 }
