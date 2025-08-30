@@ -35,7 +35,7 @@ export function BookDetails() {
     return (
         <section className="book-details ">
             <div className="flex-container">
-                <div className="flex-item-2 book-details-content">
+                <div className="flex-item-2 book-details-content ">
                     <h1>{book.title}</h1>
                     <p>{book.subtitle}</p>
                     <p>authors: {book.authors.join(',')}</p>
@@ -49,7 +49,7 @@ export function BookDetails() {
                     <LongTxt txt={book.description} length={50}/>
 
                 </div>
-                <div className="flex-item-2 book-details-preview">
+                <div className="flex-item-2 book-details-preview ">
                     <BookPreview  book={book}/>
 
                 </div>

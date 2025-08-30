@@ -1,5 +1,13 @@
 /* Helpers */
-
+.mr-20 {
+    margin-right:20px;
+}
+.ml-20 {
+    margin-left:20px;
+}
+.d-block {
+    display: block;
+}
 /* flex helpers */
 .list-style-none {
     list-style:none;
@@ -78,7 +86,7 @@
     text-align: center; /* Center text */
 }
 .flex-item-2 {
-    flex: 1 0 calc(50% - 20px); /* Adjust the percentage for the number of columns */
+    flex: 1 0 calc(45% - 20px); /* Adjust the percentage for the number of columns */
     margin: 10px; /* Space between items */
     box-sizing: border-box; /* Ensures padding and border are included in the width */
     /*background-color: #f0f0f0;  Optional: background color for visibility */
