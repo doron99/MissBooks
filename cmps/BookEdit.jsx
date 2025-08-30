@@ -1,4 +1,5 @@
 import { BookPreview } from "./BookPreview.jsx"
+import { bookService } from "../services/book.service.js"
 // export function BookEdit({ isShow,book }) {
 
 //     return (
@@ -84,19 +85,25 @@ export function BookEdit({ state, givenBook, onClose }) {
 
         //setBook(prevFilter => ({ ...prevFilter, [field]: value }))
     }
-    // function onSubmitFilter(ev) {
-    //     ev.preventDefault()
-    //     onSetFilterBy(filterByToEdit)
-    // }
-    const resetAllFields = () => {
-        //setName('')
-        //setMovies([{ movie: '' }])
-    }
-    const onSubmitAdd = () => {
+    function onSubmitAddBook(ev) {
+        ev.preventDefault()
         resetAllFields();
-        onClose();
+        const newBookEntityWithoutId = bookService.createBook();
+        newBookEntityWithoutId.title = book.title;
+        newBookEntityWithoutId.listPrice.amount = book.price;
+        newBookEntityWithoutId.thumbnail = "assets/svgs/book-cover.svg"
 
+        bookService.save(newBookEntityWithoutId).then(res => {
+            console.log('addedBook1111', res)
+            onClose({book: res});
+        });
+        
     }
+
+    const resetAllFields = () => {
+        setBook({title:'',price:''})
+    }
+
     const onInternalClose = () => {
         resetAllFields();
         onClose();
@@ -109,23 +116,21 @@ export function BookEdit({ state, givenBook, onClose }) {
         return (
             <div className="modal-backdrop" >
                 <div className="modal" >
-                    {/* book:{book} */}
                     <button className="buttonX" onClick={() => onInternalClose()}>x</button>
-                    {/* onSubmit={onSubmitAdd} */}
-                                <pre>{JSON.stringify(book, null, 2)}</pre>
+                    <pre>{JSON.stringify(book, null, 2)}</pre>
 
-                    <form >
+                    <form onSubmit={onSubmitAddBook}>
                         <label htmlFor="title">Book Name: </label>
                         <input value={book.title} onChange={handleChange}
                             type="text" placeholder="By Book Name" id="title" name="title"
                         />
-                        <br/>
+                        <br/><br/>
                         <label htmlFor="price">Price: &nbsp;</label>
                         <input value={book.price} onChange={handleChange}
                             type="number" placeholder="By Price" id="price" name="price"
                         />
-
-                        <button hidden>Set Filter</button>
+                        <br/><br/>
+                        <button type="submit">Add</button>
                     </form>
                     {/* <div className="watcher-add-section d-flex" onSubmit={handleSubmit}>
                         <div style={{paddingTop:'30px'}}>

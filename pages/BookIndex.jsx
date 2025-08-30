@@ -34,8 +34,8 @@ export function BookIndex() {
             })
     }
 
-    function onCarCreated(savedCar) {
-        setCars([...cars, savedCar])
+    function onBookCreated(savedBook) {
+        setBooks([...books, savedBook])
         setIsEdit(false)
     }
 
@@ -47,9 +47,11 @@ export function BookIndex() {
     function openBookEditModal() {
         setBookEditState('add')
     }
-    function onBookEditClose() {
-        setBookEditState('hidden')
-
+    function onBookEditClose(savedBook) {
+        if (savedBook) {
+            onBookCreated(savedBook)
+        }
+        setBookEditState('hidden');
     }
     return (
         <div>

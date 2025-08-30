@@ -8,7 +8,8 @@ export const bookService = {
     remove,
     save,
     //getEmptyBook,
-    getDefaultFilter
+    getDefaultFilter,
+    createBook
 }
 
 function query(filterBy = {}) {
@@ -107,6 +108,29 @@ function _createBooks() {
         utilService.saveToStorage(BOOK_KEY, books)
     }
     console.log('books', books)
+}
+function createBook() {
+        const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+        const book = {
+            //id: utilService.makeId(),
+            title: utilService.makeLorem(2),
+            subtitle: utilService.makeLorem(4),
+            authors: [
+                utilService.makeLorem(1)
+            ],
+            publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+            description: utilService.makeLorem(20),
+            pageCount: utilService.getRandomIntInclusive(20, 600),
+            categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+            thumbnail: ``,
+            language: "en",
+            listPrice: {
+                amount: utilService.getRandomIntInclusive(80, 500),
+                currencyCode: "EUR",
+                isOnSale: Math.random() > 0.7
+            }
+        }
+        return book;
 }
 function _createCar(vendor, speed = 250) {
     const car = getEmptyCar(vendor, speed)

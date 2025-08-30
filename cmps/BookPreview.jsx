@@ -1,10 +1,12 @@
 export function BookPreview({ book }) {
     const readerLevel = getRenderLevel(book.pageCount);
-     
+    
+     if (!book.listPrice) return <span>book not found</span>
+
     const bookAgeCategory = calcBookAgeCategory(book.publishedDate);
     const spanBookAgeBadge = bookAgeCategory != '' ? <span className="badge bookAgeCategory">{bookAgeCategory}</span> : '';
     const spanReaderLevel = <span className="badge readerLevel">{readerLevel}</span>
-    const priceClass = calcPriceClass(book.listPrice.amount);
+    const priceClass = calcPriceClass(book.listPrice.amount) ;
     const spanPrice = <span className={priceClass}>{book.listPrice.amount}{getCurrency(book.listPrice.currencyCode)}</span>
     return (
         <article className="book-preview-container">
