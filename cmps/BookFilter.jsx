@@ -23,11 +23,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
             case 'checkbox':
                 value = target.checked
                 break
-            case 'radio':
-                //readerLevel = target.value;
-                //value = target.value
-                break
-
+        
             default: break
         }
 
@@ -40,24 +36,13 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    // function handleTxtChange({ target }) {
-    //     const value = target.value
-    //     setFilterByToEdit(prevFilter => ({ ...prevFilter, txt: value }))
-    // }
-
-    // function handleMinSpeedChange({ target }) {
-    //     const value = target.value
-    //     setFilterByToEdit(prevFilter => ({ ...prevFilter, minSpeed: value }))
-    // }
-
-
     const { txt, price, isOnSale , isVintage, readerLevel } = filterByToEdit
     return (
         <section className="car-filter">
-                                <pre>{JSON.stringify(filterByToEdit, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(filterByToEdit, null, 2)}</pre> */}
 
             <fieldset >
-                    <legend>Filter Books</legend>
+                <legend>Filter Books</legend>
 
                 <form onSubmit={onSubmitFilter} style={{display:'flex',justifyContent:'space-between'}}>
                 <div>

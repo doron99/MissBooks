@@ -1,6 +1,8 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 const BOOK_KEY = 'bookDB'
+const currYear = new Date().getFullYear();
+
 _createBooks();
 export const bookService = {
     query,
@@ -21,6 +23,30 @@ function query(filterBy = {}) {
             }
             if (filterBy.price) {
                 books = books.filter(book => book.listPrice.amount >= filterBy.price)
+            }
+            if (filterBy.isOnSale) {
+                books = books.filter(book => book.listPrice.isOnSale == filterBy.isOnSale)
+            }
+            if (filterBy.isVintage) {
+                books = books.filter(book => currYear-book.publishedDate > 10)
+            }
+            if (filterBy.readerLevel) {
+                switch (filterBy.readerLevel) {
+                    case 'all':
+                        break;
+                    case 'serious':
+                        books = books.filter(book => book.pageCount > 500)
+                        break;
+                    case 'descent':
+                        books = books.filter(book => book.pageCount > 200 && book.pageCount < 500)
+                        break;
+                    case 'light':
+                        books = books.filter(book => book.pageCount < 100)
+                        break;
+                    default:
+
+                    }
+                
             }
             return books
         })
