@@ -85,8 +85,18 @@ export function BookEdit({ state, givenBook, onClose }) {
 
         //setBook(prevFilter => ({ ...prevFilter, [field]: value }))
     }
+    function isFormValid() {
+        if (book.title.length == 0 || book.price == '') {
+            return false;
+        }
+        return true;
+    }
     function onSubmitAddBook(ev) {
-        ev.preventDefault()
+        ev.preventDefault();
+        if (!isFormValid()) {
+            alert('book name and price are mandatory fields')
+            return;
+        }
         resetAllFields();
         const newBookEntityWithoutId = bookService.createBook();
         newBookEntityWithoutId.title = book.title;
