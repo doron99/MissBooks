@@ -49,18 +49,17 @@ function save(book) {
 // }
 
 function getDefaultFilter() {
-    return { txt: '', price: '' }
+    return { txt: '', price: '', isOnSale: false, isVintage: false, readerLevel:'all'}
 }
-
 
 
 function _setNextPrevBookId(book) {
     return query().then((books) => {
         const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
-        const nextCar = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
-        const prevCar = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
-        book.nextBookId = nextCar.id
-        book.prevBookId = prevCar.id
+        const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+        const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
+        book.nextBookId = nextBook.id
+        book.prevBookId = prevBook.id
         return book
     })
 }
