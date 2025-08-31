@@ -23,6 +23,8 @@ export function BookIndex() {
     }, [filterBy])
 
     function onRemoveCar(bookId) {
+        if (!confirm('are you sure to delete?')) return;
+
         bookService.remove(bookId)
             .then(() => {
                 setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
@@ -39,11 +41,11 @@ export function BookIndex() {
         setIsEdit(false)
     }
 
-    function onCarUpdated(savedCar) {
-        setCars(cars.map(car => (car.id === savedCar.id) ? savedCar : car))
-        setSelectedCar(null)
-        setIsEdit(false)
-    }
+    // function onCarUpdated(savedCar) {
+    //     setCars(cars.map(car => (car.id === savedCar.id) ? savedCar : car))
+    //     setSelectedCar(null)
+    //     setIsEdit(false)
+    // }
     function openBookEditModal() {
         setBookEditState('add')
     }
@@ -58,7 +60,7 @@ export function BookIndex() {
             <button onClick={openBookEditModal}>Add Book</button>
             <BookEdit state={bookEditState} book={selectedBook} onClose={onBookEditClose} />
             <BookFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
-            <BookList books={books} onSelect={setSelectedCar} onRemove={onRemoveCar} />
+            <BookList books={books}  onRemove={onRemoveCar} />
 
         </div>
     )
