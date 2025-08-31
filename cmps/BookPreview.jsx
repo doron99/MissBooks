@@ -8,6 +8,8 @@ export function BookPreview({ book }) {
     const spanReaderLevel = <span className="badge readerLevel">{readerLevel}</span>
     const priceClass = calcPriceClass(book.listPrice.amount) ;
     const spanPrice = <span className={priceClass}>{book.listPrice.amount}{getCurrency(book.listPrice.currencyCode)}</span>
+    const imgOnSale =  book.listPrice.isOnSale ? <img className="sale-icon" src="assets/img/sale.png" alt="" /> : ""
+
     return (
         <article className="book-preview-container">
             {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
@@ -16,7 +18,7 @@ export function BookPreview({ book }) {
                     {spanReaderLevel}
                     {spanBookAgeBadge}
                 </div>
-                <img className="sale-icon" src="assets/img/sale.png" alt="" />
+                {imgOnSale}
                 <div className="img-container">
                     <span className="book-title">{book.title}</span>
 
