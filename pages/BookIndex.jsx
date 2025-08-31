@@ -22,15 +22,15 @@ export function BookIndex() {
             })
     }, [filterBy])
 
-    function onRemoveCar(carId) {
-        bookService.remove(carId)
+    function onRemoveCar(bookId) {
+        bookService.remove(bookId)
             .then(() => {
-                setCars(prevCars => prevCars.filter(car => car.id !== carId))
-                showSuccessMsg(`Car removed`)
+                setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
+                showSuccessMsg(`book removed`)
             })
             .catch(err => {
                 console.log('err:', err)
-                showErrorMsg('Cannot remove car ' + carId)
+                showErrorMsg('Cannot remove book ' + bookId)
             })
     }
 
