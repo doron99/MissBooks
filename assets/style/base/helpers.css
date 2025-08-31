@@ -8,6 +8,12 @@
 .d-block {
     display: block;
 }
+.mr-auto {
+    margin:auto;
+}
+.w-90 {
+    width:90%;
+}
 /* flex helpers */
 .list-style-none {
     list-style:none;
@@ -21,7 +27,9 @@
 .flex.flex-column {
 	flex-direction: column;
 }
-
+.justify-content-center {
+    justify-content: center;
+}
 .flex.justify-center {
 	justify-content: center;
 }

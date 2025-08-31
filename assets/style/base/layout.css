@@ -17,3 +17,30 @@
 	padding: 1em;
 	margin: auto;
 }
+.page-header-container {
+	width: 90%;
+    margin: auto;
+    background: var(--clr1bg-light);
+    padding: 1rem;
+    border-radius: 7px;
+    margin-top: 20px;
+}
+.page-header-container h1 {
+	/* text-align: center; */
+	font-size: 2em;
+	color: var(--clr2)
+}
+/* .icon {
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url('assets/svgs/users.svg');
+    mask-image: url('assets/svgs/users.svg');
+    background-color: blue; /* Or any color of your choice. /
+    width: 20px;
+    height: 20px;
+  } */
+  .icon-color-clr2 {
+		/* color: var(--clr2)#ff7b00 */
+	filter: invert(69%) sepia(49%) saturate(7424%) hue-rotate(3deg) brightness(105%) contrast(105%);
+    /* filter: invert(8%) sepia(100%) saturate(6481%) hue-rotate(246deg) brightness(102%) contrast(143%); */
+}
