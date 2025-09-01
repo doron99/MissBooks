@@ -30,6 +30,9 @@ function query(filterBy = {}) {
             if (filterBy.isVintage) {
                 books = books.filter(book => currYear-book.publishedDate > 10)
             }
+            if (filterBy.isNew) {
+                books = books.filter(book => currYear-book.publishedDate <= 1)
+            }
             if (filterBy.readerLevel) {
                 switch (filterBy.readerLevel) {
                     case 'all':
@@ -75,7 +78,7 @@ function save(book) {
 // }
 
 function getDefaultFilter() {
-    return { txt: '', price: '', isOnSale: false, isVintage: false, readerLevel:'all'}
+    return { txt: '', price: '', isOnSale: false, isVintage: false, readerLevel:'all', isNew: false}
 }
 
 
