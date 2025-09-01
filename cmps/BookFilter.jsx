@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-
+import {SvgIcon} from "../cmps/SvgIcon.jsx"
 export function BookFilter({ filterBy, onSetFilterBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
@@ -35,16 +35,26 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
         ev.preventDefault()
         onSetFilterBy(filterByToEdit)
     }
-
-    const { txt, price, isOnSale , isVintage, readerLevel } = filterByToEdit
+    const iconSvgStyle = {
+            width:'20px',
+            height:'20px',
+            display:'inline-block'
+        }
+    const { txt, price, isOnSale , isVintage, readerLevel, isNew } = filterByToEdit
     return (
         <section className="car-filter">
             {/* <pre>{JSON.stringify(filterByToEdit, null, 2)}</pre> */}
 
             <fieldset >
-                <legend>Filter Books</legend>
+                <legend>
+                    <div style={{display:'flex',alignItems:'center'}}>
+                        <span style={{display:'inline-block'}}>Filter Books</span>
+                        <SvgIcon iconName='filter' style={iconSvgStyle}/>
+                    </div>
+                    </legend>
 
-                <form onSubmit={onSubmitFilter} style={{display:'flex',justifyContent:'space-between'}}>
+                <form onSubmit={onSubmitFilter} style={{display:'flex',alignItems:'center', gap:'20px'}}>
+                
                 <div>
                     <div style={{marginBottom:'5px'}}>
                         <label style={{width:'100px',display:'inline-block'}} htmlFor="txt">Book Name: </label>
@@ -61,21 +71,30 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                     
                     
                     
+                    
+                </div>
+                
+                <div>
                     <div style={{marginBottom:'5px'}}>
-                    <label style={{width:'100px',display:'inline-block'}} htmlFor="isOnSale">On Sale: &nbsp;</label>
-                    <input value={isOnSale} onChange={handleChange}
-                        type="checkbox"  id="isOnSale" name="isOnSale"
-                    />
+                        <label style={{width:'100px',display:'inline-block'}} htmlFor="isOnSale">On Sale: &nbsp;</label>
+                        <input value={isOnSale} onChange={handleChange}
+                            type="checkbox"  id="isOnSale" name="isOnSale"
+                        />
                     </div>
                     
-                    <div>
+                    <div style={{marginBottom:'5px'}}>
                         <label  style={{width:'100px',display:'inline-block'}} htmlFor="isVintage">Vintage: &nbsp;</label>
                         <input value={isVintage} onChange={handleChange}
                             type="checkbox"  id="isVintage" name="isVintage"
                         />
                     </div>
+                    <div>
+                        <label  style={{width:'100px',display:'inline-block'}} htmlFor="isNew">New: &nbsp;</label>
+                        <input value={isNew} onChange={handleChange}
+                            type="checkbox"  id="isNew" name="isNew"
+                        />
+                    </div>
                 </div>
-                
                 
                 
                 <fieldset style={{width:'150px'}}>
@@ -84,7 +103,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                     <input type="radio" id="all" name="readerLevel" value="all"
                         checked={readerLevel === 'all'}
                         onChange={handleChange}/>
-                    <label for="all">All</label>
+                    <label htmlFor="all">All</label>
                     </div>
                     <div>
                        <input type="radio" id="light" name="readerLevel" value="light"
@@ -96,13 +115,13 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                     <input type="radio" id="descent" name="readerLevel" value="descent"
                         checked={readerLevel === 'descent'}
                         onChange={handleChange}/>
-                    <label for="descent">Descent</label>
+                    <label htmlFor="descent">Descent</label>
                     </div>
                     <div>
                     <input type="radio" id="serious" name="readerLevel" value="serious"
                         checked={readerLevel === 'serious'}
                         onChange={handleChange}/>
-                    <label for="serious">Serious </label>
+                    <label htmlFor="serious">Serious </label>
                     </div>
                 </fieldset>
 

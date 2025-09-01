@@ -16,3 +16,7 @@
     margin: auto;
     max-width: max-content;
 }
+.book-actions button {
+    display: inline-block;
+    width:100%;
+}
