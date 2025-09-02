@@ -83,3 +83,23 @@ input:focus {
 	background-color: var(--clr1bg);
 	transition: background-color 1s;
 }
+.blockquote::before {
+  content: "\201C"; /* Left double quotation mark */
+  font-size: 2em;
+  color: #ccc;
+  float: left;
+  margin-right: 10px;
+  
+    margin-top: -5px;
+}
+
+.blockquote::after {
+  content: "\201D"; /* Right double quotation mark */
+  font-size: 2em;
+  color: #ccc;
+  float: right;
+  margin-left: 10px;
+}
+.italic {
+    font-style: italic;
+}

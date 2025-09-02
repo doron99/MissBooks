@@ -31,22 +31,41 @@ export function BookDetails() {
         // navigate(-1)
     }
 
+
     if (!book) return <div>Loading...</div>
     return (
         <section className="book-details ">
             <div className="flex-container">
                 <div className="flex-item-2 book-details-content ">
                     <h1>{book.title}</h1>
-                    <p>{book.subtitle}</p>
-                    <p>authors: {book.authors.join(',')}</p>
-                    <p>categories: {book.categories.join(',')}</p>
-                    <p>language: {book.language}</p>
+                    <p className="italic"><span className="blockquote book-details-subtitle">{book.subtitle}</span></p>
+                    <p>Authors:
+                        {
+                            book.authors.map((a, index) => {
+                                return <span className="badge" key={index}>{a}</span>;
+                            })
+                        }
+                        
+                    </p>
+
+                    <p>Categories: 
+                        {
+                            book.categories.map((cat, index) => {
+                                return <span className="badge" key={index}>{cat}</span>;
+                            })
+                        }
+                    </p>
+                    <p >language: {book.language}</p> 
                     <p>page Count: {book.pageCount}</p>
                     <p>published Year: {book.publishedDate}</p>
 
                     <hr/>
                     Description:<br/><br/>
-                    <LongTxt txt={book.description} length={50}/>
+                    <LongTxt 
+                    classes={'book-desc'} 
+                    txt={book.description} 
+                    length={200}
+                    />
 
                 </div>
                 <div className="flex-item-2 book-details-preview ">
