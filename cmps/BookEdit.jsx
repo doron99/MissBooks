@@ -1,62 +1,13 @@
 import { BookPreview } from "./BookPreview.jsx"
 import { bookService } from "../services/book.service.js"
-// export function BookEdit({ isShow,book }) {
+import { FloatTextInput } from "../cmps/FloatTextInput.jsx"
 
-//     return (
-//         <div>edit book</div>
-//         // <ul className="flex-container ">
-//         //     {books.map(book =>
-//         //         <li key={book.id} className="flex-item list-style-none">
-//         //             <BookPreview book={book} />
-//         //             <section className="book-actions" >
-//         //                 <button><Link to={`/book/${book.id}`}>Select</Link></button>
-//         //                 {/* <button onClick={() => onSelect(book)}>Select</button> */}
-//         //                 <button onClick={() => onRemove(book.id)}>x</button>
-//         //             </section>
-//         //         </li>
-//         //     )}
-//         // </ul>
-//     )
-// }
 const { useState, useEffect } = React
 
 export function BookEdit({ state, givenBook, onClose }) {
-    // const [title, setTitle] = useState('');
-    // const [price, setPrice] = useState('');
+
     const [book, setBook] = useState({title:'',price:''})
 
-    // const handleNameChange = (e) => {
-    //     setName(e.target.value);
-    // };
-
-    // const handleMovieChange = (index, value) => {
-    //     const newMovies = [...movies];
-    //     newMovies[index].movie = value;
-    //     setMovies(newMovies);
-    // };
-
-    // const addMovie = () => {
-    //     setMovies([...movies, { movie: '' }]);
-    // };
-
-    // const removeMovie = (index) => {
-    //     if (movies.length == 1) return;
-    //     const newMovies = movies.filter((_, i) => i !== index);
-    //     setMovies(newMovies);
-    // };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log('User Name:', name);
-    //     console.log('Movies:', movies);
-    //     if ((name || '').length == 0) return;
-    //     const objToReturn = {
-    //         fullname: name,
-    //         movies: movies.map(m => m.movie)
-    //     }
-    //     resetAllFields();
-    //     onClose(objToReturn);
-    // };
      function handleChange({ target }) {
         console.log('target',target)
         const field = target.name
@@ -85,6 +36,20 @@ export function BookEdit({ state, givenBook, onClose }) {
 
         //setBook(prevFilter => ({ ...prevFilter, [field]: value }))
     }
+    const handleChangeNew = (value,txtInputId) => {
+        let field = '';
+        if (txtInputId == 'txtTitle') {
+            field = 'title';
+        } else if (txtInputId == 'txtPrice') {
+            field = 'price';
+        }
+        setBook(prevBook => ({
+            ...prevBook,
+            [field]: value,
+        }));
+
+        
+    };
     function isFormValid() {
         if (book.title.length == 0 || book.price == '') {
             return false;
@@ -130,15 +95,24 @@ export function BookEdit({ state, givenBook, onClose }) {
                     <pre>{JSON.stringify(book, null, 2)}</pre>
 
                     <form onSubmit={onSubmitAddBook}>
-                        <label htmlFor="title">Book Name: </label>
-                        <input value={book.title} onChange={handleChange}
-                            type="text" placeholder="By Book Name" id="title" name="title"
-                        />
-                        <br/><br/>
-                        <label htmlFor="price">Price: &nbsp;</label>
-                        <input value={book.price} onChange={handleChange}
-                            type="number" placeholder="By Price" id="price" name="price"
-                        />
+                        <h2>Add new book</h2>
+                        <FloatTextInput 
+                            id="txtTitle"
+                            txt={book.title} 
+                            label="Book Name" 
+                            placeholder="Book Name"
+                            onChange={handleChangeNew}  />
+                       
+                        <br/>
+                        <br/>
+                        <FloatTextInput 
+                        id="txtPrice"
+                        type="number"
+                        txt={book.price} 
+                        label="Price" 
+                        placeholder="Price"
+                        onChange={handleChangeNew}  />
+                       
                         <br/><br/>
                         <button type="submit">Add</button>
                     </form>

@@ -14,7 +14,8 @@
     display: flex;
     justify-content: space-between;
     margin: auto;
-    max-width: max-content;
+    /* max-width: max-content; */
+    width:100%;
 }
 .book-actions button {
     display: inline-block;

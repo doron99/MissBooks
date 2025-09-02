@@ -3,7 +3,7 @@ import { bookService } from "../services/book.service.js"
 import {BookFilter} from '../cmps/BookFilter.jsx'
 import {BookList} from '../cmps/BookList.jsx'
 import {BookEdit} from '../cmps/BookEdit.jsx'
-
+import {eventBusService} from '../services/event-bus.service.js'
 export function BookIndex() {
     const [books, setBooks] = useState([])
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
@@ -21,20 +21,19 @@ export function BookIndex() {
                 showErrorMsg('Cannot load books')
             })
     }, [filterBy])
+    useEffect(() => {
+        const unsubscribe = eventBusService.on('onBookRemoved', removedBookId => {
+            console.log(removedBookId)
+            setBooks(prevBooks => prevBooks.filter(book => book.id !== removedBookId));
+            //setMsg(msg)
+            //setTimeout(onCloseMsg, 1500)
+        })
 
-    function onRemoveCar(bookId) {
-        if (!confirm('are you sure to delete?')) return;
-
-        bookService.remove(bookId)
-            .then(() => {
-                setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
-                showSuccessMsg(`book removed`)
-            })
-            .catch(err => {
-                console.log('err:', err)
-                showErrorMsg('Cannot remove book ' + bookId)
-            })
-    }
+        return () => {
+            unsubscribe()
+        }
+    }, [books])
+    
 
     function onBookCreated({book}) {
         setBooks(prevBooks => [book, ...prevBooks])
@@ -60,7 +59,7 @@ export function BookIndex() {
             <button onClick={openBookEditModal}>Add Book</button>
             <BookEdit state={bookEditState} book={selectedBook} onClose={onBookEditClose} />
             <BookFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
-            <BookList books={books}  onRemove={onRemoveCar} />
+            <BookList books={books}   />
 
         </div>
     )

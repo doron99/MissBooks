@@ -1,6 +1,10 @@
+const { Link } = ReactRouterDOM
+import {bookService} from '../services/book.service.js'
+import { showErrorMsg, showSuccessMsg, onBookRemove } from "../services/event-bus.service.js"
+
 export function BookPreview({ book }) {
     const readerLevel = getRenderLevel(book.pageCount);
-    
+
      if (!book.listPrice) return <span>book not found</span>
 
     const bookAgeCategory = calcBookAgeCategory(book.publishedDate);
@@ -11,13 +15,10 @@ export function BookPreview({ book }) {
     const imgOnSale =  book.listPrice.isOnSale ? <img className="sale-icon" src="assets/img/sale.png" alt="" /> : ""
 
     return (
-        <article className="book-preview-container">
+        <article className="book-preview-container ">
             {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
             <div>
-                <div className="badges-list" >
-                    {spanReaderLevel}
-                    {spanBookAgeBadge}
-                </div>
+               
                 {imgOnSale}
                 <div className="img-container">
                     <span className="book-title">{book.title}</span>
@@ -27,12 +28,34 @@ export function BookPreview({ book }) {
                         src={book.thumbnail.replace('http://','https://www.')} 
                         alt="" />
                 </div>
-
+                <div>
+                    <span className="badge readerLevel">{readerLevel}</span>
+                    <span className="badge readerLevel">{readerLevel}</span>
+                </div>
+             <h4>Price: {spanPrice}</h4>
+             <section className="book-actions" >
+                <button style={{width:'100%',display:'inline-block',flex:'1'}}><Link to={`/book/${book.id}`}>Select</Link></button>
+                <button style={{width:'100%',display:'inline-block',flex:'1'}} onClick={() =>onRemove(book.id)}>x</button>
+            </section>
             </div>
-            <h4>Price: {spanPrice}</h4>
+            
         </article>
     )
 }
+function onRemove(bookId) {
+        if (!confirm('are you sure to delete?')) return;
+
+        bookService.remove(bookId)
+            .then(() => {
+                onBookRemove(bookId);
+                //setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
+                //showSuccessMsg(`book removed`)
+            })
+            .catch(err => {
+                console.log('err:', err)
+                //showErrorMsg('Cannot remove book ' + bookId)
+            })
+    }
 function getCurrency(currencyCode) {
     if (currencyCode == 'EUR')
         return '€';

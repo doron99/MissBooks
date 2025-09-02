@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
 import {SvgIcon} from "../cmps/SvgIcon.jsx"
+import {FloatTextInput} from "../cmps/FloatTextInput.jsx"
 export function BookFilter({ filterBy, onSetFilterBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
@@ -10,7 +11,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        console.log('target',target.value)
+        console.log('target',target)
         const field = target.name
         let value = target.value
 
@@ -29,6 +30,19 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
 
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
+    const handleChangeNew = (newValue,txtInputId) => {
+        //setTxt(newValue); // Update the state with the new value
+        let field = '';
+        if (txtInputId == 'txtBookNameFilter') {
+            field = 'txt';
+        } else if (txtInputId == 'txtPriceFilter') {
+            field = 'price';
+        }
+                
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: newValue }))
+
+        
+    };
 
     // Optional support for LAZY Filtering with a button
     function onSubmitFilter(ev) {
@@ -42,31 +56,44 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
         }
     const { txt, price, isOnSale , isVintage, readerLevel, isNew } = filterByToEdit
     return (
-        <section className="car-filter">
+        <section  style={{width:'100%'}}>
             {/* <pre>{JSON.stringify(filterByToEdit, null, 2)}</pre> */}
 
-            <fieldset >
-                <legend>
+            <fieldset className="car-filter" style={{maxWidth:'630px',margin:'auto'}} >
+                <legend className="car-filter-legend">
                     <div style={{display:'flex',alignItems:'center'}}>
                         <span style={{display:'inline-block'}}>Filter Books</span>
                         <SvgIcon iconName='filter' style={iconSvgStyle}/>
                     </div>
                     </legend>
 
-                <form onSubmit={onSubmitFilter} style={{display:'flex',alignItems:'center', gap:'20px'}}>
+                <form className="car-filter-form" onSubmit={onSubmitFilter} >
                 
                 <div>
                     <div style={{marginBottom:'5px'}}>
-                        <label style={{width:'100px',display:'inline-block'}} htmlFor="txt">Book Name: </label>
+                        {/* <label style={{width:'100px',display:'inline-block'}} htmlFor="txt">Book Name: </label>
                         <input value={txt} onChange={handleChange}
                             type="text" placeholder="By Book Name" id="txt" name="txt"
                         />
+                        <br/> */}
+                        <FloatTextInput 
+                        id="txtBookNameFilter"
+                        txt={txt} 
+                        label="Book Name" 
+                        placeholder="Book Name"
+                        onChange={handleChangeNew}  />
                     </div>
                     <div style={{marginBottom:'5px'}}>
-                        <label style={{width:'100px',display:'inline-block'}} htmlFor="price">Price: &nbsp;</label>
+                        {/* <label style={{width:'100px',display:'inline-block'}} htmlFor="price">Price: &nbsp;</label>
                         <input value={price} onChange={handleChange}
                             type="number" placeholder="By Price" id="price" name="price"
-                        />
+                        /> */}
+                        <FloatTextInput 
+                        id="txtPriceFilter"
+                        txt={txt} 
+                        label="Price" 
+                        placeholder="Price"
+                        onChange={handleChangeNew}  />
                     </div>
                     
                     
@@ -126,7 +153,6 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                 </fieldset>
 
 
-                <button hidden>Set Filter</button>
             </form>
 
             </fieldset>
