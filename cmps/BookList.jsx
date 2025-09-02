@@ -5,7 +5,7 @@ export function BookList({ books, onRemove }) {
         <ul className="flex-container ">
             {books.map(book =>
                 <li key={book.id} className="flex-item list-style-none" >
-                    <BookPreview book={book} />
+                    <BookPreview book={book} showActions={true} />
                     
                 </li>
             )}

@@ -92,7 +92,7 @@ export function BookEdit({ state, givenBook, onClose }) {
             <div className="modal-backdrop" >
                 <div className="modal" >
                     <button className="buttonX" onClick={() => onInternalClose()}>x</button>
-                    <pre>{JSON.stringify(book, null, 2)}</pre>
+                    {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
 
                     <form onSubmit={onSubmitAddBook}>
                         <h2>Add new book</h2>

@@ -2,7 +2,7 @@ const { Link } = ReactRouterDOM
 import {bookService} from '../services/book.service.js'
 import { showErrorMsg, showSuccessMsg, onBookRemove } from "../services/event-bus.service.js"
 
-export function BookPreview({ book }) {
+export function BookPreview({ book,showActions = false }) {
     const readerLevel = getRenderLevel(book.pageCount);
 
      if (!book.listPrice) return <span>book not found</span>
@@ -13,7 +13,10 @@ export function BookPreview({ book }) {
     const priceClass = calcPriceClass(book.listPrice.amount) ;
     const spanPrice = <span className={priceClass}>{book.listPrice.amount}{getCurrency(book.listPrice.currencyCode)}</span>
     const imgOnSale =  book.listPrice.isOnSale ? <img className="sale-icon" src="assets/img/sale.png" alt="" /> : ""
-
+    const actions = showActions == true ? <section className="book-actions" >
+                <button style={{width:'100%',display:'inline-block',flex:'1'}}><Link to={`/book/${book.id}`}>Select</Link></button>
+                <button style={{width:'100%',display:'inline-block',flex:'1'}} onClick={() =>onRemove(book.id)}>x</button>
+            </section> : ''
     return (
         <article className="book-preview-container ">
             {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
@@ -29,14 +32,11 @@ export function BookPreview({ book }) {
                         alt="" />
                 </div>
                 <div>
-                    <span className="badge readerLevel">{readerLevel}</span>
+                    {spanBookAgeBadge}
                     <span className="badge readerLevel">{readerLevel}</span>
                 </div>
              <h4>Price: {spanPrice}</h4>
-             <section className="book-actions" >
-                <button style={{width:'100%',display:'inline-block',flex:'1'}}><Link to={`/book/${book.id}`}>Select</Link></button>
-                <button style={{width:'100%',display:'inline-block',flex:'1'}} onClick={() =>onRemove(book.id)}>x</button>
-            </section>
+             {actions}
             </div>
             
         </article>

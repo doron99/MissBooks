@@ -50,7 +50,7 @@ export function BookDetails() {
 
                 </div>
                 <div className="flex-item-2 book-details-preview ">
-                    <BookPreview  book={book}/>
+                    <BookPreview  book={book} />
 
                 </div>
             </div>
