@@ -15,10 +15,11 @@
     margin-top: 5px;
     max-width: max-content;
     margin:10px auto 5px auto;
+    padding:10px;
 }
 .book-preview-container img {
-    max-width:max-content;
-    max-height:max-content;
+    /* max-width:max-content;
+    max-height:max-content; */
     /* padding:10px; */
     transition: transform 0.5s ease;
     
