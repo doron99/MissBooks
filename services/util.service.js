@@ -8,7 +8,9 @@ export const utilService = {
     getMonthName,
     animateCSS
 }
-
+// function isDevMode() {
+//     const urlParams = new URLSearchParams(window.location.search);
+// }
 function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'

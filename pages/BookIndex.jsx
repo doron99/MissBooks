@@ -3,6 +3,8 @@ import { bookService } from "../services/book.service.js"
 import {BookFilter} from '../cmps/BookFilter.jsx'
 import {BookList} from '../cmps/BookList.jsx'
 import {BookEdit} from '../cmps/BookEdit.jsx'
+const { Link } = ReactRouterDOM
+
 import {showUserMsg,showSuccessMsg,showErrorMsg} from '../services/event-bus.service.js'
 export function BookIndex() {
     const [books, setBooks] = useState([])
@@ -86,8 +88,7 @@ export function BookIndex() {
     }
     return (
         <div>
-            <button onClick={openBookEditModal}>Add Book</button>
-            <BookEdit state={bookEditState}  onClose={onBookEditClose} />
+            <button><Link to={`/book/edit`}>Add Book</Link></button>
             <BookFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
             <BookList books={books} onRemove={onRemove}  />
 
