@@ -2,7 +2,9 @@ const { useState, useEffect } = React
 import { bookService } from "../services/book.service.js"
 import { BookPreview} from "../cmps/BookPreview.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx"
-// import { showErrorMsg } from "../services/event-bus.service.js"
+import { ReviewEdit } from "../cmps/ReviewEdit.jsx"
+
+import { showErrorMsg } from "../services/event-bus.service.js"
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
 export function BookDetails() {
@@ -74,6 +76,9 @@ export function BookDetails() {
                 </div>
             </div>
             <br/>
+            <div>
+                <ReviewEdit/>
+            </div>
             
             <nav className="next-prev">
                 <Link className="button" to={`/book/${book.prevBookId}`}> &lt; Previous Book</Link> | 

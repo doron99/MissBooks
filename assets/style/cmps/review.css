@@ -1,0 +1,75 @@
+/* .show-result {
+  margin: 10px;
+  padding: 10px;
+  color: green;
+  font-size: 20px;
+}
+
+.star-rating s:hover,
+.star-rating s.active {
+    color: red;
+}
+.star-rating-rtl s:hover,
+.star-rating-rtl s.active {
+    color: red;
+}
+
+.star-rating s,
+.star-rating-rtl s {
+    color: black;
+    font-size: 50px;
+    cursor: default;
+    text-decoration: none;
+    line-height: 50px;
+}
+.star-rating {
+    padding: 2px;
+}
+.star-rating-rtl {
+    background: #555;
+    display: inline-block;
+    border: 2px solid #444;
+}
+.star-rating-rtl s {
+    color: yellow;
+}
+.star-rating s:hover:before,
+.star-rating s.rated:before,
+.star-rating s.active:before {
+    content: "\2605";
+}
+.star-rating s:before {
+    content: "\2606";
+}
+.star-rating-rtl s:hover:after,
+.star-rating-rtl s.rated:after,
+.star-rating-rtl s.active:after {
+    content: "\2605";
+}
+
+.star-rating-rtl s:after {
+    content: "\2606";
+} */
+ .star {
+    font-size: 2rem; /* Adjust size as needed */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    color: transparent; /* Make the text transparent for the outlined star */
+    position: relative; /* Position for the pseudo-element */
+}
+
+.star.outlined {
+    color: gray; /* Color for the outlined star */
+}
+
+.star.outlined::before {
+    content: '★'; /* Use the filled star character */
+    color: gray; /* Color for the outlined star */
+    position: absolute; /* Position it over the transparent star */
+    left: 0; /* Align it to the left */
+    top: 0; /* Align it to the top */
+    font-size: inherit; /* Match the font size */
+}
+
+.star.filled {
+    color: yellow; /* Color for the filled star */
+}
