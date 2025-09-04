@@ -1,8 +1,10 @@
 const { useState, useEffect } = React
 //todo: finish
 export function FloatTextInput({ id , type='text',txt = '', label = '...' , palceholder = '', onChange }) {
-    const [inputValue, setInputValue] = useState('');
-
+    const [inputValue, setInputValue] = useState(txt);
+    useEffect(() => {
+        setInputValue(txt); // Update state when txt prop changes
+    }, [txt]);
     
     
 
