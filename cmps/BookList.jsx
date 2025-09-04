@@ -1,8 +1,6 @@
 import { BookPreview } from "./BookPreview.jsx"
 const { Link } = ReactRouterDOM
 
-const { Link } = ReactRouterDOM
-
 export function BookList({ books, onRemove }) {
 
     return (

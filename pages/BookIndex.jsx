@@ -72,7 +72,7 @@ export function BookIndex() {
         }
         setBookEditState('hidden');
     }
-    function onRemoveBbook(bookId) {
+    function onRemove(bookId) {
         if (!confirm('are you sure to delete?')) return;
 
         bookService.remove(bookId)
