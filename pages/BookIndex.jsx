@@ -3,13 +3,11 @@ import { bookService } from "../services/book.service.js"
 import {BookFilter} from '../cmps/BookFilter.jsx'
 import {BookList} from '../cmps/BookList.jsx'
 import {BookEdit} from '../cmps/BookEdit.jsx'
+import {showUserMsg,showSuccessMsg,showErrorMsg} from '../services/event-bus.service.js'
 export function BookIndex() {
     const [books, setBooks] = useState([])
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
-    const [selectedCar, setSelectedCar] = useState(null)
-    const [isEdit, setIsEdit] = useState(false)
     const [bookEditState, setBookEditState] = useState('hidden')
-    const [selectedBook, setSelectedBook] = useState(null)
 
     useEffect(() => {
         console.log('filterBy happend', filterBy)
@@ -40,7 +38,8 @@ export function BookIndex() {
 
     function onBookCreated({book}) {
         setBooks(prevBooks => [book, ...prevBooks])
-        setIsEdit(false)
+        showSuccessMsg('added successfully')
+        //setIsEdit(false)
     }
 
     // function onCarUpdated(savedCar) {
@@ -88,7 +87,7 @@ export function BookIndex() {
     return (
         <div>
             <button onClick={openBookEditModal}>Add Book</button>
-            <BookEdit state={bookEditState} book={selectedBook} onClose={onBookEditClose} />
+            <BookEdit state={bookEditState}  onClose={onBookEditClose} />
             <BookFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
             <BookList books={books} onRemove={onRemove}  />
 

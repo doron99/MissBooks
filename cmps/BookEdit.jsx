@@ -4,7 +4,7 @@ import { FloatTextInput } from "../cmps/FloatTextInput.jsx"
 
 const { useState, useEffect } = React
 
-export function BookEdit({ state, givenBook, onClose }) {
+export function BookEdit({ state, onClose }) {
 
     const [book, setBook] = useState({title:'',price:''})
 
