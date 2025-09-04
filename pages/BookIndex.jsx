@@ -21,18 +21,18 @@ export function BookIndex() {
                 showErrorMsg('Cannot load books')
             })
     }, [filterBy])
-    useEffect(() => {
-        const unsubscribe = eventBusService.on('onBookRemoved', removedBookId => {
-            console.log(removedBookId)
-            setBooks(prevBooks => prevBooks.filter(book => book.id !== removedBookId));
-            //setMsg(msg)
-            //setTimeout(onCloseMsg, 1500)
-        })
+    // useEffect(() => {
+    //     const unsubscribe = eventBusService.on('onBookRemoved', removedBookId => {
+    //         console.log(removedBookId)
+    //         setBooks(prevBooks => prevBooks.filter(book => book.id !== removedBookId));
+    //         //setMsg(msg)
+    //         //setTimeout(onCloseMsg, 1500)
+    //     })
 
-        return () => {
-            unsubscribe()
-        }
-    }, [books])
+    //     return () => {
+    //         unsubscribe()
+    //     }
+    // }, [books])
     
 
     function onBookCreated({book}) {
@@ -45,6 +45,21 @@ export function BookIndex() {
     //     setSelectedCar(null)
     //     setIsEdit(false)
     // }
+    function onRemove(removedBookId) {
+        console.log('on Remove',removedBookId)
+        if (!confirm('are you sure to delete?')) return;
+        bookService.remove(bookId)
+            .then(() => {
+                onBookRemove(bookId);
+                setBooks(prevBooks => prevBooks.filter(book => book.id !== removedBookId));
+                //showSuccessMsg(`book removed`)
+            })
+            .catch(err => {
+                console.log('err:', err)
+                //showErrorMsg('Cannot remove book ' + bookId)
+            })
+
+    }
     function openBookEditModal() {
         setBookEditState('add')
     }
@@ -59,7 +74,7 @@ export function BookIndex() {
             <button onClick={openBookEditModal}>Add Book</button>
             <BookEdit state={bookEditState} book={selectedBook} onClose={onBookEditClose} />
             <BookFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
-            <BookList books={books}   />
+            <BookList books={books} onRemove={onRemove}  />
 
         </div>
     )

@@ -1,7 +1,3 @@
-const { Link } = ReactRouterDOM
-import {bookService} from '../services/book.service.js'
-import { showErrorMsg, showSuccessMsg, onBookRemove } from "../services/event-bus.service.js"
-
 export function BookPreview({ book,showActions = false }) {
     const readerLevel = getRenderLevel(book.pageCount);
 
@@ -13,49 +9,34 @@ export function BookPreview({ book,showActions = false }) {
     const priceClass = calcPriceClass(book.listPrice.amount) ;
     const spanPrice = <span className={priceClass}>{book.listPrice.amount}{getCurrency(book.listPrice.currencyCode)}</span>
     const imgOnSale =  book.listPrice.isOnSale ? <img className="sale-icon" src="assets/img/sale.png" alt="" /> : ""
-    const actions = showActions == true ? <section className="book-actions" >
-                <button style={{width:'100%',display:'inline-block',flex:'1'}}><Link to={`/book/${book.id}`}>Select</Link></button>
-                <button style={{width:'100%',display:'inline-block',flex:'1'}} onClick={() =>onRemove(book.id)}>x</button>
-            </section> : ''
+    
     return (
         <article className="book-preview-container ">
             {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
-            <div>
                
-                {imgOnSale}
-                <div className="img-container">
-                    <span className="book-title">{book.title}</span>
+                
+                <div className="img-wrapper">
+                    {imgOnSale}
+                    <div className="img-container">
+                        <span className="book-title">{book.title}</span>
 
-                    <img 
-                        className="book-cover" 
-                        src={book.thumbnail.replace('http://','https://www.')} 
-                        alt="" />
+                        <img 
+                            className="book-cover" 
+                            src={book.thumbnail.replace('http://','https://www.')} 
+                            alt="" />
+                    </div>
                 </div>
+                
                 <div>
                     {spanBookAgeBadge}
                     <span className="badge readerLevel">{readerLevel}</span>
                 </div>
              <h4>Price: {spanPrice}</h4>
-             {actions}
-            </div>
             
         </article>
     )
 }
-function onRemove(bookId) {
-        if (!confirm('are you sure to delete?')) return;
 
-        bookService.remove(bookId)
-            .then(() => {
-                onBookRemove(bookId);
-                //setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
-                //showSuccessMsg(`book removed`)
-            })
-            .catch(err => {
-                console.log('err:', err)
-                //showErrorMsg('Cannot remove book ' + bookId)
-            })
-    }
 function getCurrency(currencyCode) {
     if (currencyCode == 'EUR')
         return '€';
