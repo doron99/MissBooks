@@ -15,6 +15,7 @@
     margin-top: 5px;
     /* max-width: max-content; */
     margin:10px auto 5px auto;
+    padding:10px;
 }
 .book-preview-container img {
     max-width:300px;

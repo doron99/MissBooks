@@ -115,7 +115,7 @@
     }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 600px) {
     .flex-item .flex-item-2 {
         flex: 1 0 calc(100% - 20px); 
         /* 1 column */

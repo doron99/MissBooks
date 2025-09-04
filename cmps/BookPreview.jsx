@@ -37,6 +37,7 @@ export function BookPreview({ book,showActions = false }) {
     )
 }
 
+
 function getCurrency(currencyCode) {
     if (currencyCode == 'EUR')
         return '€';
