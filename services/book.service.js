@@ -11,7 +11,9 @@ export const bookService = {
     save,
     //getEmptyBook,
     getDefaultFilter,
-    createBook
+    createBook,
+    addReview,
+    deleteReview
 }
 
 function query(filterBy = {}) {
@@ -71,6 +73,28 @@ function save(book) {
     } else {
         return storageService.post(BOOK_KEY, book)
     }
+}
+function addReview(bookId,review) {
+    review.id = utilService.makeId()
+    return get(bookId)
+        .then(book => {
+            book.reviews = book.reviews ? [...book.reviews, review] : [review];
+            return save(book)
+        })
+        .catch(error => {
+            console.error('Error adding review:', error);
+        });
+}
+function deleteReview(bookId,reviewId) {
+    
+    return get(bookId)
+        .then(book => {
+            book.reviews = book.reviews.filter(review => review.id != reviewId);
+            return save(book)
+        })
+        .catch(error => {
+            console.error('Error updating review:', error);
+        });
 }
 
 // function getEmptyCar(vendor = '', speed = '') {
