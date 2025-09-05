@@ -51,7 +51,7 @@
     content: "\2606";
 } */
  .star {
-    font-size: 2rem; /* Adjust size as needed */
+    font-size: 1.5rem; /* Adjust size as needed */
     cursor: pointer; /* Change cursor to pointer on hover */
     color: transparent; /* Make the text transparent for the outlined star */
     position: relative; /* Position for the pseudo-element */

@@ -18,8 +18,8 @@ export function FloatTextInput({ id , type='text',txt = '', label = '...' , palc
     
     return (
         <div style={style} className="float-text-input ">
-            <label htmlFor="floatField1 ">{label}</label>
-            <input type={type}  placeholder={palceholder} 
+            <label htmlFor="floatField1 " style={{background:'transparent'}}>{label}</label>
+            <input type={type}  placeholder={palceholder} style={{background:'transparent'}}
                 value={inputValue}
                 onChange={handleChange} />
         </div>

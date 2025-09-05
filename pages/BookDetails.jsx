@@ -54,6 +54,18 @@ export function BookDetails() {
     }
 
     if (!book) return <div>Loading...</div>
+
+    const reviewList = book.reviews 
+        ? book.reviews.map((review,index) => {
+            return <div key={index} 
+            style={{display:'flex',justifyContent:'space-between',alignItems:'center',maxWidth:'300px'}}>
+                <div>{review.fullname}</div>
+                <Rating rating={review.rating} /> 
+                <span>{review.readAt}</span>
+                <button onClick={() => onDeleteReview(review.id)}>x</button>
+            </div>
+        }) 
+        : <span>no reviews</span>
     return (
         <section className="book-details ">
             <div className="flex-container">
@@ -95,15 +107,20 @@ export function BookDetails() {
                 </div>
             </div>
             <br/>
-            <div>
-                <ReviewEdit review={review} onPostReview={onPostReview}/>
-                <br/>
-                {book.reviews.map((review,index) => {
-                    return <div key={index} style={{display:'flex'}}><div>{review.fullname}</div>
-                    <Rating rating={review.rating}  /> 
-                    <button onClick={() => onDeleteReview(review.id)}>x</button>
-                   </div>
-                })}
+            <div style={{display:'flex',margin:'30px',flexWrap:'wrap',alignItems: 'center'}} className="flex-container1">
+                <ReviewEdit style={{margin:'30px',flex:'1 0 50%',
+                maxWidth:'300px',padding: '20px',
+                background: 'var(--clr2bg-light)',borderRadius: '10px'
+
+
+                }} className=" " review={review} onPostReview={onPostReview}/>
+                <div style={{margin:'30px',flex:'1 0 50%',
+                width:'auto',maxHeight: '200px',overflow: 'auto'
+                }} className=" ">
+                    {reviewList}    
+                </div>
+                
+                
             </div>
             
             <nav className="next-prev">

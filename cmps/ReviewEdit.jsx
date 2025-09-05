@@ -7,7 +7,7 @@ import { showErrorMsg } from "../services/event-bus.service.js";
 
 const { useState, useEffect, useRef } = React
 
-export function ReviewEdit({ onPostReview }) {
+export function ReviewEdit({ onPostReview, style = {} }) {
     const ratingRef = useRef();
 
     const getDefaultReview = () => {
@@ -29,6 +29,10 @@ export function ReviewEdit({ onPostReview }) {
 
     };
     function onSubmitPostReview() {
+        if (_review.fullname.length == 0 || _review.rating == 0) {
+            showErrorMsg('fullname or star missing');
+            return;
+        }
         set_Review(getDefaultReview());
         resetRatingStars();
         onPostReview({
@@ -45,21 +49,24 @@ export function ReviewEdit({ onPostReview }) {
     }
   };
     return (
-        <div className="" style={{border:'1px solid black', width:'90%',marginBottom:'20px',marginRight:'auto',marginLeft:'auto',padding:'20px'}}
+        <div className="" 
+        style={style}
+        // style={{border:'1px solid black', width:'auto',marginBottom:'20px',
+        //     marginRight:'auto',marginLeft:'auto',padding:'20px'
+        // }}
         >
 
                         {/* <pre>{JSON.stringify(_review, null, 2)}</pre> */}
                         <h2>Add Review</h2>
                         <form onSubmit={onSubmitPostReview}  >
-                            <div style={{display:'flex',justifyContent:'',gap:'5px'}}>
+                            <div style={{display:'block',justifyContent:'',gap:'5px'}}>
                                 <FloatTextInput style={{display:'block',alignSelf:'center'}}
                                     id="fullname"
                                     txt={_review.fullname} 
                                     label="full Name" 
                                     placeholder="full Name"
                                     onChange={handleChangeNew}  />
-                                <Rating ref={ratingRef} readOnly={false} style={{display:'block',alignSelf:'center'}}  onRateChanged={(event) => handleChangeNew(event, 'rating')}/>
-                                
+                                    <br/>
                                 <FloatTextInput style={{display:'block',alignSelf:'center'}}
                                     id="readAt"
                                     type="date"
@@ -67,6 +74,9 @@ export function ReviewEdit({ onPostReview }) {
                                     label="read at" 
                                     placeholder="read at"
                                     onChange={handleChangeNew}  />
+                                <Rating ref={ratingRef} readOnly={false} style={{display:'block',alignSelf:'center'}}  onRateChanged={(event) => handleChangeNew(event, 'rating')}/>
+                                
+                                
                                 </div>
                             
                              {/* <input
@@ -80,7 +90,7 @@ export function ReviewEdit({ onPostReview }) {
                                 onChange={(event) => handleChangeNew(event.target.value, 'readAt')} // Pass the event correctly
                             /> */}
                             
-                            <button type="submit">Post Review</button>
+                            <button style={{display:'block',margin:'5px 0 0 0'}} type="submit">Post Review</button>
                         </form>
                           
                     </div>
