@@ -1,4 +1,4 @@
-export function BookPreview({ book,showActions = false }) {
+export function BookPreview({ book }) {
     const readerLevel = getRenderLevel(book.pageCount);
 
      if (!book.listPrice) return <span>book not found</span>

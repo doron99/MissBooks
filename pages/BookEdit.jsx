@@ -1,8 +1,6 @@
-import { BookPreview } from "./BookPreview.jsx"
 import { bookService } from "../services/book.service.js"
 import { FloatTextInput } from "../cmps/FloatTextInput.jsx"
 import { showErrorMsg } from "../services/event-bus.service.js";
-import { BookDetails } from "./BookDetails.jsx";
 
 const { Link,useNavigate,useParams } = ReactRouterDOM
 

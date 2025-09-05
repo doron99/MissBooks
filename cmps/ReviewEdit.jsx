@@ -1,4 +1,3 @@
-import { BookPreview } from "./BookPreview.jsx"
 import {FloatTextInput} from "../cmps/FloatTextInput.jsx"
 import {Rating} from "./Rating.jsx"
 
