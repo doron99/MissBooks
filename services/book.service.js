@@ -1,6 +1,7 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 const BOOK_KEY = 'bookDB'
+
 const currYear = new Date().getFullYear();
 
 _createBooks();
@@ -56,6 +57,7 @@ function query(filterBy = {}) {
             return books
         })
 }
+
 
 function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
@@ -183,9 +185,4 @@ function createBook() {
             }
         }
         return book;
-}
-function _createCar(vendor, speed = 250) {
-    const car = getEmptyCar(vendor, speed)
-    car.id = makeId()
-    return car
 }

@@ -80,7 +80,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                         id="txtBookNameFilter"
                         txt={txt} 
                         label="Book Name" 
-                        placeholder="Book Name"
+                        placeholder=""
                         onChange={handleChangeNew}  />
                     </div>
                     <div style={{marginBottom:'5px'}}>
@@ -92,7 +92,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                         id="txtPriceFilter"
                         txt={txt} 
                         label="Price" 
-                        placeholder="Price"
+                        placeholder=""
                         onChange={handleChangeNew}  />
                     </div>
                     

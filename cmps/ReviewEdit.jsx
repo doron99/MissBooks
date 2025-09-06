@@ -66,7 +66,7 @@ export function ReviewEdit({ onPostReview, style = {} }) {
                                     id="fullname"
                                     txt={_review.fullname} 
                                     label="full Name" 
-                                    placeholder="full Name"
+                                    placeholder=""
                                     onChange={handleChangeNew}  />
                                     <br/>
                                 <FloatTextInput style={{display:'block',alignSelf:'center'}}
@@ -74,7 +74,7 @@ export function ReviewEdit({ onPostReview, style = {} }) {
                                     type="date"
                                     txt={_review.readAt} 
                                     label="read at" 
-                                    placeholder="read at"
+                                    placeholder=""
                                     onChange={handleChangeNew}  />
                                 <Rating ref={ratingRef} readOnly={false} style={{display:'block',alignSelf:'center'}}  onRateChanged={(event) => handleChangeNew(event, 'rating')}/>
                                 
