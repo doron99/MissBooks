@@ -1,0 +1,16 @@
+.autocomplete-suggestions {
+    list-style: none;
+    cursor: pointer;
+    padding:0;
+}
+
+ul.autocomplete-suggestions li:nth-child(odd) {
+    background-color: #d3d3d3; /* Light background for odd items */
+}
+
+ul.autocomplete-suggestions li:nth-child(even) {
+    background-color: #ffffff; /* White background for even items */
+}
+ul.autocomplete-suggestions li:hover {
+    background:skyblue;
+}
