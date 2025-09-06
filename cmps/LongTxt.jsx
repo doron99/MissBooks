@@ -15,7 +15,7 @@ export function LongTxt({ txt, length = 100, classes = "" }) {
         return <span className={innerClassNames}>{txt}</span>
     }
     return isShowMore 
-    ? <span className={innerClassNames}>{txt} <a onClick={toggle}>show less</a></span>
+    ? <span className={innerClassNames}>{txt} <a onClick={toggle}>view less</a></span>
     : <span className={innerClassNames}>{txt.substring(0,length)} <a onClick={toggle}>show more</a></span>
 
 }
