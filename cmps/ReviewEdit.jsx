@@ -28,7 +28,9 @@ export function ReviewEdit({ onPostReview, style = {} }) {
         set_Review(prevFilter => ({ ...prevFilter, [field]: value }))
 
     };
-    function onSubmitPostReview() {
+    function onSubmitPostReview(event) {
+        console.log('onSubmitPostReview',event)
+        event.preventDefault()
         if (_review.fullname.length == 0 || _review.rating == 0) {
             showErrorMsg('fullname or star missing');
             return;

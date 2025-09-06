@@ -59,9 +59,18 @@ export function BookDetails() {
         ? book.reviews.map((review,index) => {
             return <div key={index} 
             style={{display:'flex',justifyContent:'space-between',alignItems:'center',maxWidth:'300px'}}>
-                <div>{review.fullname}</div>
-                <Rating rating={review.rating} /> 
-                <span>{review.readAt}</span>
+                <div style={{width:'100px'}}>
+                    <LongTxt 
+                    classes={{overflowWrap: 'break-word'}}
+                    txt={review.fullname} 
+                    length={20}
+                    />
+                </div>
+                <div style={{lineHeight:'15px'}}>
+                    <span style={{fontWeight:'bold',fontSize:'0.8rem',fontStyle:'italic'}}>{review.readAt}</span>
+                    <Rating rating={review.rating} /> 
+                </div>
+                
                 <button onClick={() => onDeleteReview(review.id)}>x</button>
             </div>
         }) 
@@ -114,11 +123,13 @@ export function BookDetails() {
 
 
                 }} className=" " review={review} onPostReview={onPostReview}/>
-                <div style={{margin:'30px',flex:'1 0 50%',
+                {/* flex:'1 0 50%', */}
+                <div style={{margin:'30px',
                 width:'auto',maxHeight: '200px',overflow: 'auto'
                 }} className=" ">
                     {reviewList}    
                 </div>
+                
                 
                 
             </div>

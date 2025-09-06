@@ -2,3 +2,6 @@
     color: blue;
     border-bottom: 1px solid blue;
 }
+.long-txt {
+    overflow-wrap: break-word;
+}
