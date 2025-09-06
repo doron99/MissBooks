@@ -1,6 +1,8 @@
 import { bookService } from "../services/book.service.js"
 import { FloatTextInput } from "../cmps/FloatTextInput.jsx"
 import { showErrorMsg } from "../services/event-bus.service.js";
+import { Autocomplete } from "../cmps/Autocomplete.jsx";
+import { googleBookService } from "../services/google-book.service.js"
 
 const { Link,useNavigate,useParams } = ReactRouterDOM
 
@@ -94,43 +96,70 @@ export function BookEdit({ }) {
             alert('book name and price are mandatory fields')
             return;
         }
-
-        bookService.save(book).then(res => {
+        saveBookAndNavigateToBookIndex(book);
+        
+        
+    }
+    const saveBookAndNavigateToBookIndex = (_book) => {
+        bookService.save(_book).then(res => {
             //console.log('addedBook1111', res)
             navigate('/book');
         }).catch(err => {
             console.error(err);
             showErrorMsg('error')
         });
+    }
+    const onSuggestionSelect = ({row}) => {
+        googleBookService.isBookExistsByTitle(row.title).then(res => {
+            if (res) {
+                showErrorMsg('book already exists')
+                return;
+            }
+            console.log('onSuggestionSelect', row)
+            delete row.id;
+            row.thumbnail = "assets/svgs/book-cover.svg"
+
+
+            saveBookAndNavigateToBookIndex(row);
+        })
         
+
+        //handleChangeNew(row.title,'txtTitle')
+        //handleChangeNew(row.listPrice.amount,'txtPrice')
+
     }
     if (!book) return <span>loading</span>
     const title = book.id ? 'Update book' : 'Add new book'
 
     const btnText = book.id ? 'Update' : 'Add'
-        return (
-            <div className="" >
 
+    const ddd = !book.id 
+    ? <div><h2>Add book from google api</h2><Autocomplete onSuggestionSelect={onSuggestionSelect}/>
+                    <hr style={{marginBottom:'10px',marginTop:'10px'}}/></div>
+                    : ''
+        return (
+            <div style={{width:'90%',margin:'auto'}} className="" >
                 <button className="buttonX" ><Link to={`/book`}>Back</Link></button>
                 {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
 
                 <form onSubmit={onSubmitAddBook}>
+                    
+                    {ddd}
                     <h2>{title}</h2>
                     <FloatTextInput 
                         id="txtTitle"
                         txt={book.title} 
                         label="Book Name" 
-                        placeholder="Book Name"
+                        placeholder=""
                         onChange={handleChangeNew}  />
                     
-                    <br/>
                     <br/>
                     <FloatTextInput 
                     id="txtPrice"
                     type="number"
                     txt={book.listPrice.amount} 
                     label="Price" 
-                    placeholder="Price"
+                    placeholder=""
                     onChange={handleChangeNew}  />
                     
                     <br/><br/>
