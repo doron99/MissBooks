@@ -7,6 +7,8 @@ import { BookDetails } from "./pages/BookDetails.jsx"
 import { UserMsg } from "./cmps/UserMsg.jsx"
 import { NotFound } from "./cmps/NotFound.jsx"
 import { BookEdit } from "./pages/BookEdit.jsx"
+import { AboutTeam } from "./cmps/AboutTeam.jsx"
+import { AboutGoal } from "./cmps/AboutGoal.jsx"
 
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route, Navigate } = ReactRouterDOM
@@ -23,8 +25,8 @@ export function App() {
                         <Route path="/" element={<Navigate to="/home" />} />
                         <Route path="/home" element={<HomePage />} />
                          <Route path="/about" element={<AboutUs />}>
-                            {/* <Route path="/about/team" element={<Team />} />
-                            <Route path="/about/vision" element={<Vision />} /> */}
+                            <Route path="/about/team" element={<AboutTeam />} />
+                            <Route path="/about/goal" element={<AboutGoal />} />
                         </Route> 
                         <Route path="/book" element={<BookIndex />} />
                         <Route path="/book/:bookId" element={<BookDetails />} />

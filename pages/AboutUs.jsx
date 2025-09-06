@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-
+const { Outlet, Link, NavLink } = ReactRouterDOM
 export function AboutUs() {
     return (
         <section className="home">
@@ -29,6 +29,15 @@ export function AboutUs() {
 
                
             </div> 
+            <div style={{width: '90%',margin: 'auto'}}>
+                <nav className="app-header  main-layout " style={{width:'400px',display:'flex'}}>
+                    <NavLink style={{padding:'10px'}} to="/about/team">Team</NavLink>
+                    <NavLink style={{padding:'10px'}} to="/about/goal">Goal</NavLink>
+                </nav>
+                    <Outlet />
+
+            </div>
+            
         </section>
 
        
