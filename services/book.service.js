@@ -14,7 +14,8 @@ export const bookService = {
     getDefaultFilter,
     createBook,
     addReview,
-    deleteReview
+    deleteReview,
+    getFilterFromSrcParams
 }
 
 function query(filterBy = {}) {
@@ -99,12 +100,28 @@ function deleteReview(bookId,reviewId) {
         });
 }
 
-// function getEmptyCar(vendor = '', speed = '') {
-//     return { vendor, speed }
-// }
-
 function getDefaultFilter() {
     return { txt: '', price: '', isOnSale: false, isVintage: false, readerLevel:'all', isNew: false}
+}
+function getFilterFromSrcParams(srcParams) {
+    const txt = srcParams.get('txt') || ''
+    const price = srcParams.get('price') || ''
+    const isOnSale = srcParams.get('isOnSale') && srcParams.get('isOnSale') == 'true' ? true : false
+    const isVintage = srcParams.get('isVintage') && srcParams.get('isVintage') == 'true' ? true : false
+    const readerLevel = srcParams.get('readerLevel') || 'all'
+    const isNew = srcParams.get('isNew') && srcParams.get('isNew') == 'true' ? true : false
+
+
+    return { 
+        txt: txt, 
+        price: price, 
+        isOnSale: isOnSale, 
+        isVintage: isVintage, 
+        readerLevel:readerLevel, 
+        isNew: isNew
+    }
+
+
 }
 
 

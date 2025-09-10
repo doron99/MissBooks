@@ -32,6 +32,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
     }
     const handleChangeNew = (newValue,txtInputId) => {
         //setTxt(newValue); // Update the state with the new value
+        console.log('handleChangeNew','input',txtInputId,'value',newValue)
         let field = '';
         if (txtInputId == 'txtBookNameFilter') {
             field = 'txt';
@@ -71,11 +72,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                 
                 <div>
                     <div style={{marginBottom:'5px'}}>
-                        {/* <label style={{width:'100px',display:'inline-block'}} htmlFor="txt">Book Name: </label>
-                        <input value={txt} onChange={handleChange}
-                            type="text" placeholder="By Book Name" id="txt" name="txt"
-                        />
-                        <br/> */}
+                     
                         <FloatTextInput 
                         id="txtBookNameFilter"
                         txt={txt} 
@@ -84,14 +81,12 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                         onChange={handleChangeNew}  />
                     </div>
                     <div style={{marginBottom:'5px'}}>
-                        {/* <label style={{width:'100px',display:'inline-block'}} htmlFor="price">Price: &nbsp;</label>
-                        <input value={price} onChange={handleChange}
-                            type="number" placeholder="By Price" id="price" name="price"
-                        /> */}
+                        
                         <FloatTextInput 
                         id="txtPriceFilter"
-                        txt={txt} 
+                        txt={price} 
                         label="Price" 
+                        type="number"
                         placeholder=""
                         onChange={handleChangeNew}  />
                     </div>

@@ -3,23 +3,31 @@ import { bookService } from "../services/book.service.js"
 import {BookFilter} from '../cmps/BookFilter.jsx'
 import {BookList} from '../cmps/BookList.jsx'
 import {BookEdit} from '../cmps/BookEdit.jsx'
-const { Link } = ReactRouterDOM
+const { Link, useSearchParams } = ReactRouterDOM
+import { getTruthyValues } from "../services/util.service.js"
 
 import {showUserMsg,showSuccessMsg,showErrorMsg} from '../services/event-bus.service.js'
 export function BookIndex() {
     const [books, setBooks] = useState([])
-    const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const [filterBy, setFilterBy] = useState(bookService.getFilterFromSrcParams(searchParams))
     const [bookEditState, setBookEditState] = useState('hidden')
 
     useEffect(() => {
         console.log('filterBy happend', filterBy)
+        setSearchParams(getTruthyValues(filterBy))
+
+        loadBooks();
+    }, [filterBy])
+    function loadBooks() {
         bookService.query(filterBy)
             .then(books => setBooks(books))
             .catch(err => {
                 console.eror('err:', err)
                 showErrorMsg('Cannot load books')
             })
-    }, [filterBy])
+    }
     // useEffect(() => {
     //     const unsubscribe = eventBusService.on('onBookRemoved', removedBookId => {
     //         console.log(removedBookId)
