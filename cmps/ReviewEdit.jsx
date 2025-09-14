@@ -58,9 +58,16 @@ export function ReviewEdit({ onPostReview, style = {} }) {
         // }}
         >
 
-                        {/* <pre>{JSON.stringify(_review, null, 2)}</pre> */}
+                        <pre>{JSON.stringify(_review, null, 2)}</pre>
                         <h2>Add Review</h2>
                         <form onSubmit={onSubmitPostReview}  >
+                              <span
+                                // className={num <= rating ? 'selected' : ''}
+                                // key={num}
+                                onClick={() => handleChangeNew(_review.rating,'rating')}>
+                                ⭐
+                            </span>
+            
                             <div style={{display:'block',justifyContent:'',gap:'5px'}}>
                                 <FloatTextInput style={{display:'block',alignSelf:'center'}}
                                     id="fullname"
@@ -76,7 +83,11 @@ export function ReviewEdit({ onPostReview, style = {} }) {
                                     label="read at" 
                                     placeholder=""
                                     onChange={handleChangeNew}  />
-                                <Rating ref={ratingRef} readOnly={false} style={{display:'block',alignSelf:'center'}}  onRateChanged={(event) => handleChangeNew(event, 'rating')}/>
+                                <Rating 
+                                ref={ratingRef} 
+                                readOnly={false} 
+                                style={{display:'block',alignSelf:'center'}}  
+                                onRateChanged={(event) => handleChangeNew(event, 'rating')}/>
                                 
                                 
                                 </div>
