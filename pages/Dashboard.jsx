@@ -4,7 +4,6 @@ import {Chart} from '../cmps/Chart.jsx'
 
 export function Dashboard() {
     const [books, setBooks] = useState([])
-    const [categories, setCategories] = useState({})
     const [arrDashboardData, setArrDashboardData] = useState([])
 
     useEffect(() => {
@@ -27,7 +26,6 @@ export function Dashboard() {
                         })
                         setArrDashboardData(_arrDashboardData);
 
-                        setCategories(groupBy)
                         console.log(groupBy);
                         const styles = `display:grid;`
                     })
